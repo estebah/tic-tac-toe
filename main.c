@@ -2,18 +2,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_BLUE "\x1b[34m"
+#define ANSI_COLOR_YELLOW "\x1b[33m"
+#define ANSI_COLOR_RESET "\x1b[0m"
+
 char pos[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 int player_turn = 1;
 bool quit = true;
 
 int board() {
-  printf("     TIC TAC TOE\n");
+  printf("     %sTIC TAC TOE\n%s", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
   printf("\n");
-  printf("    %c  |  %c  |  %c\n", pos[1], pos[2], pos[3]);
+  printf("    %s%c%s  |  %s%c%s  |  %s%c%s\n",
+         (pos[1] == 'X') ? ANSI_COLOR_RED : ((pos[1] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[1], ANSI_COLOR_RESET,
+         (pos[2] == 'X') ? ANSI_COLOR_RED : ((pos[2] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[2], ANSI_COLOR_RESET,
+         (pos[3] == 'X') ? ANSI_COLOR_RED : ((pos[3] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[3], ANSI_COLOR_RESET);
   printf("  -----------------\n");
-  printf("    %c  |  %c  |  %c\n", pos[4], pos[5], pos[6]);
+  printf("    %s%c%s  |  %s%c%s  |  %s%c%s\n",
+         (pos[4] == 'X') ? ANSI_COLOR_RED : ((pos[4] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[4], ANSI_COLOR_RESET,
+         (pos[5] == 'X') ? ANSI_COLOR_RED : ((pos[5] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[5], ANSI_COLOR_RESET,
+         (pos[6] == 'X') ? ANSI_COLOR_RED : ((pos[6] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[6], ANSI_COLOR_RESET);
   printf("  -----------------\n");
-  printf("    %c  |  %c  |  %c\n", pos[7], pos[8], pos[9]);
+  printf("    %s%c%s  |  %s%c%s  |  %s%c%s\n",
+         (pos[7] == 'X') ? ANSI_COLOR_RED : ((pos[7] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[7], ANSI_COLOR_RESET,
+         (pos[8] == 'X') ? ANSI_COLOR_RED : ((pos[8] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[8], ANSI_COLOR_RESET,
+         (pos[9] == 'X') ? ANSI_COLOR_RED : ((pos[9] == 'O') ? ANSI_COLOR_BLUE : ""),
+         pos[9], ANSI_COLOR_RESET);
   printf("\n");
   return 0;
 }
@@ -56,12 +79,12 @@ int check_winner() {
   int winner;
   winner = check_board();
   if (winner == 1 && player_turn == 2) {
-    printf("   Winner Player #1\n");
+    printf("   %sWinner Player #1\n%s", ANSI_COLOR_RED, ANSI_COLOR_RESET);
     printf("\n");
     quit = false;
   }
   if (winner == 1 && player_turn == 1) {
-    printf("   Winner Player #2\n");
+    printf("   %sWinner Player #1\n%s", ANSI_COLOR_BLUE, ANSI_COLOR_RESET);
     printf("\n");
     quit = false;
   }
