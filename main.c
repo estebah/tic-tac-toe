@@ -1,6 +1,5 @@
-#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdbool.h>
 
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_BLUE "\x1b[34m"
@@ -108,29 +107,14 @@ int play() {
     fgets(input, 10, stdin);
     int output;
 
-    if (sscanf(input, "%d", &output) == 1) {
-      if (output > 0 && output <= 9) {
-        if (pos[output] != 'X' && pos[output] != 'O') {
-          if (player_turn == 1) {
-            pos[output] = 'X';
-            player_turn = 2;
-          } else {
-            pos[output] = 'O';
-            player_turn = 1;
-          }
-          system("clear");
-          board();
-          check_winner();
-        } else {
-          system("clear");
-          board();
-        }
-      } else {
-        system("clear");
-        board();
-      }
+    if (sscanf(input, "%d", &output) == 1 && output > 0 && output <= 9 && pos[output] != 'X' && pos[output] != 'O') {
+      pos[output] = (player_turn == 1) ? 'X' : 'O';
+      player_turn = (player_turn == 1) ? 2 : 1;
+      printf("\e[1;1H\e[2J");
+      board();
+      check_winner();
     } else {
-      system("clear");
+      printf("\e[1;1H\e[2J");
       board();
     }
   }
@@ -138,7 +122,7 @@ int play() {
 }
 
 int main() {
-  system("clear");
+  printf("\e[1;1H\e[2J");
   board();
   play();
   return 0;
