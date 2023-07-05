@@ -7,6 +7,5 @@ A simple Tic-Tac-Toe written in C.
 ## Quick Start
 
 ```console
-$ gcc -o main main.c
-$ ./main
+$ ./build.sh
 ```
